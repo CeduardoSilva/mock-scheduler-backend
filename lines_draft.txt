@@ -1,0 +1,29 @@
+$earlier_0 = "• Às <? $webhook_result.alternative_time_slots.earlier[0].time?>, <? $webhook_result.alternative_time_slots.earlier[0].date?>"
+$earlier_1 = "• Às <? $webhook_result.alternative_time_slots.earlier[1].time?>, <? $webhook_result.alternative_time_slots.earlier[1].date?>"
+$earlier_2 = "• Às <? $webhook_result.alternative_time_slots.earlier[2].time?>, <? $webhook_result.alternative_time_slots.earlier[2].date?>"
+$earlier_3 = "• Às <? $webhook_result.alternative_time_slots.earlier[3].time?>, <? $webhook_result.alternative_time_slots.earlier[3].date?>"
+
+$earlier_0 = "<? ($webhook_result.alternative_time_slots.earlier.size() == 0)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[0].time+', '+$webhook_result.alternative_time_slots.earlier[0].date?>"
+$earlier_1 = "<? ($webhook_result.alternative_time_slots.earlier.size() < 2)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[1].time+', '+$webhook_result.alternative_time_slots.earlier[1].date?>"
+$earlier_2 = "<? ($webhook_result.alternative_time_slots.earlier.size() < 3)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[2].time+', '+$webhook_result.alternative_time_slots.earlier[2].date?>"
+$earlier_3 = "<? ($webhook_result.alternative_time_slots.earlier.size() < 4)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[3].time+', '+$webhook_result.alternative_time_slots.earlier[3].date?>"
+
+$later_0 = "<? ($webhook_result.alternative_time_slots.later.size() == 0)? '' : '• Às '+$webhook_result.alternative_time_slots.later[0].time+', '+$webhook_result.alternative_time_slots.later[0].date?>"
+$later_1 = "<? ($webhook_result.alternative_time_slots.later.size() < 2)? '' : '• Às '+$webhook_result.alternative_time_slots.later[1].time+', '+$webhook_result.alternative_time_slots.later[1].date?>"
+$later_2 = "<? ($webhook_result.alternative_time_slots.later.size() < 3)? '' : '• Às '+$webhook_result.alternative_time_slots.later[2].time+', '+$webhook_result.alternative_time_slots.later[2].date?>"
+$later_3 = "<? ($webhook_result.alternative_time_slots.later.size() < 4)? '' : '• Às '+$webhook_result.alternative_time_slots.later[3].time+', '+$webhook_result.alternative_time_slots.later[3].date?>"
+
+$earlier_test = "<? ($webhook_result.alternative_time_slots.earlier[0] == null)? 'ASS'+'SHIT' : 'FUCK'+'SHIT' ?>"
+
+"context": {
+    "otherPerson": "<? (@other_person==null)? false : true ?>"
+  },
+  
+Desculpe, verifiquei que o horário $time do dia $date não está disponível. Gostaria de tentar marcar outro horário?
+
+Os horários mais próximos são:
+
+$earlier_0
+$earlier_1
+$earlier_2
+$earlier_3

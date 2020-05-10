@@ -1,0 +1,959 @@
+{
+  "intents": [
+    {
+      "intent": "consultar_horário",
+      "examples": [
+        {
+          "text": "Que horas eu marquei meu horário"
+        },
+        {
+          "text": "Pode me informar o dia e a hora do meu corte"
+        },
+        {
+          "text": "Quero saber a hora e o dia do meu corte"
+        },
+        {
+          "text": "Gostaria de consultar o horário que eu marquei"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "sim",
+      "examples": [
+        {
+          "text": "Marca"
+        },
+        {
+          "text": "Pode sim"
+        },
+        {
+          "text": "Pode"
+        },
+        {
+          "text": "Confirmo"
+        },
+        {
+          "text": "Afirmativo"
+        },
+        {
+          "text": "Pode marcar"
+        },
+        {
+          "text": "Sim"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "horários_disponíveis",
+      "examples": [
+        {
+          "text": "Quais horários tem para eu marcar"
+        },
+        {
+          "text": "Quais são seus horários?"
+        },
+        {
+          "text": "Quero saber que horários vocês tem disponíveis"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "reagendar_horário",
+      "examples": [
+        {
+          "text": "Quero reagendar um corte"
+        },
+        {
+          "text": "Mudar um horário"
+        },
+        {
+          "text": "Reagendar um corte"
+        },
+        {
+          "text": "Quero mudar o horário"
+        },
+        {
+          "text": "Quero remarcar meu corte"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "agendar_horário",
+      "examples": [
+        {
+          "text": "Gostaria de cortar a juba"
+        },
+        {
+          "text": "Quero marcar um corte"
+        },
+        {
+          "text": "Preciso agendar um corte de cabelo"
+        },
+        {
+          "text": "Corte de cabelo"
+        },
+        {
+          "text": "Marcar um corte"
+        },
+        {
+          "text": "Agendar um horário"
+        },
+        {
+          "text": "Agendar um corte"
+        },
+        {
+          "text": "Quero marcar um horário"
+        },
+        {
+          "text": "Quero cortar a juba"
+        },
+        {
+          "text": "Cortar a juba"
+        },
+        {
+          "text": "Corta na frente e pica atrás"
+        },
+        {
+          "text": "Gostaria de ser tosado"
+        },
+        {
+          "text": "Quero me tosar"
+        },
+        {
+          "text": "Me tosa"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "não",
+      "examples": [
+        {
+          "text": "Não quero"
+        },
+        {
+          "text": "Não obrigado"
+        },
+        {
+          "text": "Não precisa"
+        },
+        {
+          "text": "Nem"
+        },
+        {
+          "text": "Nah"
+        },
+        {
+          "text": "Nope"
+        },
+        {
+          "text": "Deixa pra lá"
+        },
+        {
+          "text": "Não"
+        },
+        {
+          "text": "Esquece"
+        },
+        {
+          "text": "Esquece, não quero mais"
+        },
+        {
+          "text": "Nem fodendo"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "desmarcar_horário",
+      "examples": [
+        {
+          "text": "Quero desmarcar um horárii"
+        },
+        {
+          "text": "Quero desistir"
+        },
+        {
+          "text": "Quero desistir de um corte"
+        },
+        {
+          "text": "Não vou mais aparecer"
+        },
+        {
+          "text": "Não vou mais no meu horário"
+        },
+        {
+          "text": "Quero desmarcar um corte"
+        },
+        {
+          "text": "Quero desmarcar um horário"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "reavaliar_horário",
+      "examples": [
+        {
+          "text": "Quero tentar de novo"
+        },
+        {
+          "text": "outra hora"
+        },
+        {
+          "text": "mudar a hora"
+        },
+        {
+          "text": "Muar a hora"
+        },
+        {
+          "text": "Quero mudar"
+        },
+        {
+          "text": "Quero de novo"
+        },
+        {
+          "text": "outro horário"
+        },
+        {
+          "text": "Quero outro horário"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "code",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "(A\\d{4})",
+          "patterns": [
+            "(A\\d{4})"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "webhooks": [
+    {
+      "url": "https://mock-scheduler-backend.mybluemix.net/scheduler",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Despedida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Obrigado pelo contato! Até a próxima!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Bem-vindo",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "Bem-vindo"
+      },
+      "dialog_node": "node_4_1584799655958",
+      "previous_sibling": "node_7_1583411384463"
+    },
+    {
+      "type": "standard",
+      "title": "Reagendar horário",
+      "parent": "Bem-vindo",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "phone": "+5511982052477",
+            "command": "get_appointment"
+          },
+          "result_variable": "webhook_result"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1584993924589"
+      },
+      "conditions": "#reagendar_horário",
+      "dialog_node": "node_7_1583411384463",
+      "previous_sibling": "node_1_1583356485787"
+    },
+    {
+      "type": "frame",
+      "title": "Agendar horário",
+      "parent": "Bem-vindo",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "date": "$date",
+            "time": "$time",
+            "phone": "$phone",
+            "command": "check_availability"
+          },
+          "result_variable": "webhook_result"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#agendar_horário",
+      "dialog_node": "node_1_1583356485787"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Qual dia gostaria?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_9_1584993924594",
+      "event_name": "focus",
+      "dialog_node": "handler_11_1584993924594",
+      "previous_sibling": "handler_10_1584993924594"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1584993924594",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_10_1584993924594"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Qual horário gostaria?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_6_1584993924594",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1584993924594",
+      "previous_sibling": "handler_7_1584993924594"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1584993924594",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_7_1584993924594"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_7_1583411384463",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1584805789002",
+      "previous_sibling": "response_1_1584810087044"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Não encontramos agendamentos seus. $webhook_result.appointments.length"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_7_1583411384463",
+      "conditions": "$webhook_result.appointments.length == 0",
+      "dialog_node": "response_8_1584810086521",
+      "previous_sibling": "response_2_1584810084925"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Entendi que gostaria de reagendar um horário. Seu último agendamento conosco foi:<br>• <? $webhook_result.appointments[0].time ?>, <? $webhook_result.appointments[0].date ?>"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_7_1583411384463",
+      "conditions": "$webhook_result.appointments.length > 0",
+      "dialog_node": "response_2_1584810084925",
+      "previous_sibling": "node_2_1584993924589"
+    },
+    {
+      "type": "response_condition",
+      "parent": "node_7_1583411384463",
+      "conditions": "anything_else",
+      "dialog_node": "response_1_1584810087044",
+      "previous_sibling": "response_8_1584810086521"
+    },
+    {
+      "type": "frame",
+      "title": "Escolher horário",
+      "output": {},
+      "parent": "node_7_1583411384463",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "date": "$date",
+            "time": "$time",
+            "phone": "$phone",
+            "command": "check_availability"
+          },
+          "result_variable": "webhook_result"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#agendar_horário",
+      "dialog_node": "node_2_1584993924589"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Entendi que gostaria de marcar um corte de cabelo. Qual dia e horário gostaria?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583356485787",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1583416938977",
+      "previous_sibling": "node_6_1584800290425"
+    },
+    {
+      "type": "standard",
+      "title": "Go to Despedida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583356485787",
+      "context": {
+        "date": null,
+        "time": null,
+        "webhook_result": null
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1584799655958"
+      },
+      "conditions": "#não",
+      "dialog_node": "node_6_1584800290425",
+      "previous_sibling": "node_5_1584139737061"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1583356485787",
+      "dialog_node": "response_1_1584129078405",
+      "previous_sibling": "response_1_1584127670944"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Desculpe, verifiquei que o horário $time do dia $date não está disponível. Gostaria de tentar marcar outro horário?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_1_1583356485787",
+      "context": {
+        "later_0": "<? ($webhook_result.alternative_time_slots.later.size() == 0)? '' : '• Às '+$webhook_result.alternative_time_slots.later[0].time+', '+$webhook_result.alternative_time_slots.later[0].date?>",
+        "later_1": "<? ($webhook_result.alternative_time_slots.later.size() < 2)? '' : '• Às '+$webhook_result.alternative_time_slots.later[1].time+', '+$webhook_result.alternative_time_slots.later[1].date?>",
+        "later_2": "<? ($webhook_result.alternative_time_slots.later.size() < 3)? '' : '• Às '+$webhook_result.alternative_time_slots.later[2].time+', '+$webhook_result.alternative_time_slots.later[2].date?>",
+        "later_3": "<? ($webhook_result.alternative_time_slots.later.size() < 4)? '' : '• Às '+$webhook_result.alternative_time_slots.later[3].time+', '+$webhook_result.alternative_time_slots.later[3].date?>",
+        "earlier_0": "<? ($webhook_result.alternative_time_slots.earlier.size() == 0)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[0].time+', '+$webhook_result.alternative_time_slots.earlier[0].date?>",
+        "earlier_1": "<? ($webhook_result.alternative_time_slots.earlier.size() < 2)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[1].time+', '+$webhook_result.alternative_time_slots.earlier[1].date?>",
+        "earlier_2": "<? ($webhook_result.alternative_time_slots.earlier.size() < 3)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[2].time+', '+$webhook_result.alternative_time_slots.earlier[2].date?>",
+        "earlier_3": "<? ($webhook_result.alternative_time_slots.earlier.size() < 4)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[3].time+', '+$webhook_result.alternative_time_slots.earlier[3].date?>"
+      },
+      "conditions": "$webhook_result.available == false",
+      "dialog_node": "response_1_1584127670944",
+      "previous_sibling": "response_4_1583416938370"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1583356485787",
+      "variable": "$date",
+      "dialog_node": "slot_3_1583356840930",
+      "previous_sibling": "slot_2_1583356543613"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Entendi que gostaria de marcar um corte de cabelo para dia $date às $time. Este horário está disponível, posso confirmar seu agendamento?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583356485787",
+      "conditions": "$webhook_result.available == true",
+      "dialog_node": "response_4_1583416938370",
+      "previous_sibling": "handler_1_1583416938977"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1583356485787",
+      "variable": "$time",
+      "dialog_node": "slot_2_1583356543613",
+      "previous_sibling": "response_1_1584129078405"
+    },
+    {
+      "type": "standard",
+      "title": "Go to Reavaliar horário",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok, vamos tentar...\nOs horários mais próximos são:\n<br>\n$earlier_0\n$earlier_1\n$earlier_2\n$earlier_3\n$later_0\n$later_1\n$later_2\n$later_3"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_1_1583356485787",
+      "context": {
+        "time": null
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1583356485787"
+      },
+      "conditions": "#sim && $webhook_result.available == false",
+      "dialog_node": "node_5_1584139737061",
+      "previous_sibling": "node_1_1583417879780"
+    },
+    {
+      "type": "standard",
+      "title": "Confirmar agendamento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok, seu corte está marcado para $date às $time. Muito obrigado pelo contato!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1583356485787",
+      "conditions": "#sim && $webhook_result.available == true",
+      "dialog_node": "node_1_1583417879780"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Qual dia gostaria?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1583356840930",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1583356840932",
+      "previous_sibling": "handler_9_1583356840932"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1583356840930",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_9_1583356840932"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Qual horário gostaria?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_2_1583356543613",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1583356543622",
+      "previous_sibling": "handler_10_1583356543622"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1583356543613",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_10_1583356543622"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1584993924589",
+      "variable": "$date",
+      "dialog_node": "slot_9_1584993924594",
+      "previous_sibling": "slot_6_1584993924594"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": " Para quando gostaria de alterar seu agendamento?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1584993924589",
+      "event_name": "focus",
+      "dialog_node": "handler_12_1584993924594",
+      "previous_sibling": "node_5_1584993924594"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Entendi que gostaria de marcar um corte de cabelo para dia $date às $time. Este horário está disponível, posso confirmar seu agendamento?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1584993924589",
+      "conditions": "$webhook_result.available == true",
+      "dialog_node": "response_13_1584993924594",
+      "previous_sibling": "handler_12_1584993924594"
+    },
+    {
+      "type": "standard",
+      "title": "Go to Despedida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1584993924589",
+      "context": {
+        "date": null,
+        "time": null,
+        "webhook_result": null
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1584799655958"
+      },
+      "conditions": "#não",
+      "dialog_node": "node_5_1584993924594",
+      "previous_sibling": "node_4_1584993924594"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Desculpe, verifiquei que o horário $time do dia $date não está disponível. Gostaria de tentar marcar outro horário?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_2_1584993924589",
+      "context": {
+        "later_0": "<? ($webhook_result.alternative_time_slots.later.size() == 0)? '' : '• Às '+$webhook_result.alternative_time_slots.later[0].time+', '+$webhook_result.alternative_time_slots.later[0].date?>",
+        "later_1": "<? ($webhook_result.alternative_time_slots.later.size() < 2)? '' : '• Às '+$webhook_result.alternative_time_slots.later[1].time+', '+$webhook_result.alternative_time_slots.later[1].date?>",
+        "later_2": "<? ($webhook_result.alternative_time_slots.later.size() < 3)? '' : '• Às '+$webhook_result.alternative_time_slots.later[2].time+', '+$webhook_result.alternative_time_slots.later[2].date?>",
+        "later_3": "<? ($webhook_result.alternative_time_slots.later.size() < 4)? '' : '• Às '+$webhook_result.alternative_time_slots.later[3].time+', '+$webhook_result.alternative_time_slots.later[3].date?>",
+        "earlier_0": "<? ($webhook_result.alternative_time_slots.earlier.size() == 0)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[0].time+', '+$webhook_result.alternative_time_slots.earlier[0].date?>",
+        "earlier_1": "<? ($webhook_result.alternative_time_slots.earlier.size() < 2)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[1].time+', '+$webhook_result.alternative_time_slots.earlier[1].date?>",
+        "earlier_2": "<? ($webhook_result.alternative_time_slots.earlier.size() < 3)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[2].time+', '+$webhook_result.alternative_time_slots.earlier[2].date?>",
+        "earlier_3": "<? ($webhook_result.alternative_time_slots.earlier.size() < 4)? '' : '• Às '+$webhook_result.alternative_time_slots.earlier[3].time+', '+$webhook_result.alternative_time_slots.earlier[3].date?>"
+      },
+      "conditions": "$webhook_result.available == false",
+      "dialog_node": "response_14_1584993924594",
+      "previous_sibling": "response_13_1584993924594"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1584993924589",
+      "variable": "$time",
+      "dialog_node": "slot_6_1584993924594",
+      "previous_sibling": "response_15_1584993924594"
+    },
+    {
+      "type": "standard",
+      "title": "Go to Reavaliar horário",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok, vamos tentar...\nOs horários mais próximos são:\n<br>\n$earlier_0\n$earlier_1\n$earlier_2\n$earlier_3\n$later_0\n$later_1\n$later_2\n$later_3"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "multiline"
+          }
+        ]
+      },
+      "parent": "node_2_1584993924589",
+      "context": {
+        "time": null
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1584993924589"
+      },
+      "conditions": "#sim && $webhook_result.available == false",
+      "dialog_node": "node_4_1584993924594",
+      "previous_sibling": "node_3_1584993924594"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1584993924589",
+      "dialog_node": "response_15_1584993924594",
+      "previous_sibling": "response_14_1584993924594"
+    },
+    {
+      "type": "standard",
+      "title": "Confirmar agendamento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok, seu corte está marcado para $date às $time. Muito obrigado pelo contato!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1584993924589",
+      "conditions": "#sim && $webhook_result.available == true",
+      "dialog_node": "node_3_1584993924594"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "digress_in": "returns",
+      "dialog_node": "Em outros casos",
+      "digress_out": "allow_all",
+      "previous_sibling": "Bem-vindo",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá $name. Sou o assistente de agendamentos do salão. Como posso ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "name": "Carlos Eduardo",
+        "phone": "+5511958139991"
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Você quis dizer:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Nenhuma das anteriores"
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "schedule-haircuts",
+  "language": "pt-br",
+  "description": "Allow the assistant to schedule and manage haircut appointments."
+}
